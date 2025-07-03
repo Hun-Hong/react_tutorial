@@ -2,6 +2,7 @@
 ## 📅 Day 1 – React & TypeScript 기초
 ## 📖 목차
 - [1. React 기초](#-day-1--react--typescript-기초)
+- [2. useState](#-day-2-이론-정리-usestate-이벤트-처리-조건부-렌더링)
 
 
 # 🧠 Day 1 이론 상세 설명: React + TypeScript 기초
@@ -157,3 +158,99 @@ const Comp = (props: Props) => {...}
 |A|props가 string이어야 한다는 뜻이므로 객체 구조가 아님 → ❌|
 |C|props를 구조 분해했지만 타입이 누락되어 있음 → ❌|
 |D|구조 자체가 잘못됨. {}는 매개변수 선언이 아니라 객체 → ❌|
+
+
+# 🧠 Day 2 이론 정리: useState, 이벤트 처리, 조건부 렌더링
+
+## 1. useState (상태 관리)
+### ✅ 개념
+useState는 React 함수형 컴포넌트에서 상태값을 보존하고 변경할 수 있게 해주는 훅입니다.
+상태가 변경되면 해당 컴포넌트가 다시 렌더링됩니다.
+
+### 🔧 사용법
+```tsx
+import { useState } from "react";
+
+const [count, setCount] = useState<number>(0);
+```
+- count: 현재 상태값
+- setCount: 상태 변경 함수
+- number: 상태 타입 (TypeScript에서 명시)
+
+### 💡 주의점
+- TypeScript에서는 boolean, number, string 등 소문자 원시 타입을 사용해야 합니다.
+- setState는 비동기이며 즉시 반영되지 않습니다.
+
+## 2. 이벤트 처리
+### ✅ 개념
+React에서 이벤트를 처리할 때는 HTML 이벤트와 다르게 카멜케이스를 사용합니다.
+
+### 🔧 예시
+```tsx
+<button onClick={handleClick}>클릭</button>
+
+const handleClick = () => {
+  alert("눌렀습니다!");
+};
+```
+- 버튼, 입력, 폼 등의 사용자 동작에 대응 가능
+- onClick, onChange, onSubmit 등 다양하게 제공
+
+## 3. 조건부 렌더링
+### ✅ 개념
+React에서는 if 대신 JSX 안에서 삼항 연산자 또는 **논리 AND (&&)**를 사용해 조건에 따라 화면을 바꿉니다.
+
+### 🔧 삼항 연산자
+```tsx
+{isLoggedIn ? <p>환영합니다</p> : <p>로그인해주세요</p>}
+```
+### 🔧 논리 AND
+```tsx
+{error && <p>에러가 발생했습니다</p>}
+```
+
+## 4. 전체 정리
+|개념|설명|
+|---|---|
+|useState|컴포넌트 내부 상태를 선언하고 변경하는 훅|
+|onClick|버튼 클릭 이벤트 핸들러|
+|onChange|입력값 변경을 감지하는 이벤트|
+|조건부 렌더링|? : 또는 &&를 사용하여 조건에 따라 JSX 렌더링|
+
+## 5. 마무리 퀴즈
+아래 보기 중 React + TypeScript에서 상태(state)를 선언하고 사용할 때 적절하지 않은 코드는 무엇일까요?
+
+```tsx
+A. const [count, setCount] = useState<number>(0);
+
+B. const [name, setName] = useState<string>("훈");
+
+C. const [isOpen, setIsOpen] = useState<Boolean>(false);
+
+D. const [items, setItems] = useState<string[]>([]);
+```
+
+정답: C
+
+## ✅ 해설
+```tsx
+C. const [isOpen, setIsOpen] = useState<Boolean>(false);
+```
+
+## ❌ 문제점
+- Boolean은 래퍼 객체 타입입니다. (new Boolean(false) 같은)
+- 실제 상태 값으로 사용하기에는 의도치 않은 결과를 만들 수 있어 지양해야 합니다.
+- 대신 **원시 타입인 boolean**을 사용해야 합니다.
+
+## ✅ 올바른 코드
+```tsx
+const [isOpen, setIsOpen] = useState<boolean>(false);
+```
+
+## 🔍 나머지 보기 해설
+|보기|설명|적절성|
+|---|---|-----|
+|A|number 타입 상태값 선언|✅|
+|B|string 타입 상태값 선언|✅|
+|D|string[] (배열) 상태값 선언|✅|
+

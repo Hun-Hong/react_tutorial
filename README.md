@@ -257,3 +257,101 @@ const [isOpen, setIsOpen] = useState<boolean>(false);
 |B|string 타입 상태값 선언|✅|
 |D|string[] (배열) 상태값 선언|✅|
 
+
+# 🧠 Day 3 이론 정리: 입력 필드와 객체 상태 관리
+
+## 1. 입력 필드와 useState
+### ✅ 입력값을 상태에 연결하는 기본 패턴
+```tsx
+const [value, setValue] = useState<string>("");
+
+<input
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+/>
+```
+
+- value: 입력 필드에 표시되는 값
+- onChange: 사용자가 입력할 때 상태 업데이트
+- 필수: 상태값과 input은 항상 양방향 바인딩되어야 함
+
+## 2. 여러 상태 관리 방식
+### ✅ 방식 1: 상태 각각 분리
+```tsx
+const [nickname, setNickname] = useState<string>("");
+const [age, setAge] = useState<number>(0);
+```
+
+### ✅ 방식 2: 하나의 객체로 묶기
+```tsx
+const [profile, setProfile] = useState<{ nickname: string; age: number }>({
+  nickname: "",
+  age: 0,
+});
+```
+- 한 번에 많은 필드를 관리할 수 있어 효율적
+- 단, 업데이트 시 불변성 유지 필요
+
+## 3. 객체 상태 업데이트
+### ✅ 스프레드 연산자로 불변성 유지
+```tsx
+setProfile({
+  ...profile,
+  nickname: "훈",
+});
+```
+- 기존 값은 유지하고 필요한 부분만 덮어쓰기
+- useState로 객체를 관리할 땐 항상 이렇게 부분 업데이트를 수행해야 안전함
+
+## 4. 전체 요약
+|개념|설명|
+|---|---|
+|useState와 input 연결|입력 필드와 상태값을 동기화하는 양방향 바인딩 구조|
+|여러 상태 관리|각각 분리하거나 객체로 통합|
+|객체 상태 업데이트|...기존값 스프레드로 불변성 유지하며 덮어쓰기|
+|입력값 타입 처리|숫자는 Number(e.target.value)로 형 변환 필요|
+
+## 5. 마무리 퀴즈
+아래 중 React + TypeScript에서 객체 상태를 잘못 업데이트한 코드는 무엇일까요?
+
+```tsx
+const [profile, setProfile] = useState<{ name: string; age: number }>({
+  name: "",
+  age: 0,
+});
+```
+
+### 선택지
+- A.
+```tsx
+setProfile({ name: "훈", age: 30 });
+```
+- B.
+```tsx
+setProfile({ ...profile, name: "훈" });
+```
+- C.
+```tsx
+setProfile({ name: "훈" });
+```
+- D.
+```tsx
+setProfile({ ...profile, age: profile.age + 1 });
+```
+
+정답: C
+
+## 🔍 해설
+```tsx
+C. setProfile({ name: "훈" });
+```
+- ❌ 이 코드는 age 필드를 생략했습니다.
+- profile 상태는 { name: string; age: number } 타입으로 선언되어 있기 때문에, 모든 필드를 포함한 객체를 전달해야 합니다.
+- age가 빠진 상태로 setProfile()을 호출하면 타입 오류 발생
+
+## 나머지 보기 해설
+|보기|설명|적절성|
+|---|---|------|
+|A|모든 필드를 직접 명시함 (name, age)|✅|
+|B|기존 객체를 스프레드한 후 name만 변경|✅|
+|D|기존 age를 기반으로 증가시킴|✅|

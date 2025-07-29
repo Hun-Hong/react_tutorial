@@ -1,8 +1,8 @@
-import ShopCart from "./components/week2/assignments/Cart/ShopCart"
+import StopwatchApp from "./components/week3/Timer";
 
 function App() {
   return (
-    <ShopCart />
+    <StopwatchApp />
   )
 }
 export default App;

@@ -1,462 +1,68 @@
-/* src/index.css - React 학습용 깔끔한 스타일 */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
-/* ===== 리셋 및 기본 설정 ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
 
-html, body {
-  height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8fafc;
-  color: #334155;
-  line-height: 1.6;
 }
 
-#root {
-  min-height: 100vh;
-}
-
-/* ===== 레이아웃 ===== */
-.App {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ===== 네비게이션 ===== */
-nav {
-  background: white;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-}
-
-nav a {
-  color: #64748b;
-  text-decoration: none;
-  margin: 0 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+a {
   font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
 }
 
-nav a:hover {
-  background-color: #f1f5f9;
-  color: #334155;
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
-nav a.active {
-  background-color: #3b82f6;
-  color: white;
-}
-
-/* ===== 메인 컨텐츠 ===== */
-main {
-  flex: 1;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-/* ===== 제목들 ===== */
 h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 1.5rem;
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
-h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #334155;
-  margin-bottom: 1.25rem;
-  margin-top: 2rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #475569;
-  margin-bottom: 1rem;
-  margin-top: 1.5rem;
-}
-
-/* ===== 카드 컴포넌트 ===== */
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid #e2e8f0;
-  transition: all 0.2s ease;
-}
-
-.card:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transform: translateY(-1px);
-}
-
-/* ===== 섹션 ===== */
-section {
-  margin-bottom: 3rem;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-}
-
-section h3 {
-  margin-top: 0;
-  color: #1e293b;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 0.5rem;
-}
-
-/* ===== 버튼들 ===== */
 button {
-  background: #3b82f6;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
   border-radius: 8px;
-  font-size: 0.95rem;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
   font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
   cursor: pointer;
-  transition: all 0.2s ease;
-  margin: 0.25rem;
+  transition: border-color 0.25s;
 }
-
 button:hover {
-  background: #2563eb;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
-button:active {
-  transform: translateY(0);
-}
-
-button:disabled {
-  background: #94a3b8;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-/* 버튼 변형들 */
-button.secondary {
-  background: #64748b;
-}
-
-button.secondary:hover {
-  background: #475569;
-}
-
-button.danger {
-  background: #ef4444;
-}
-
-button.danger:hover {
-  background: #dc2626;
-}
-
-button.outline {
-  background: transparent;
-  color: #3b82f6;
-  border: 1px solid #3b82f6;
-}
-
-button.outline:hover {
-  background: #3b82f6;
-  color: white;
-}
-
-/* ===== 입력 필드들 ===== */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  background: white;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="number"]:focus,
-textarea:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-input.error {
-  border-color: #ef4444;
-}
-
-input.error:focus {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
-/* ===== 레이블과 폼 그룹 ===== */
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #374151;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group:last-child {
-  margin-bottom: 0;
-}
-
-/* ===== 체크박스 ===== */
-input[type="checkbox"] {
-  margin-right: 0.5rem;
-  transform: scale(1.1);
-}
-
-/* ===== 리스트 ===== */
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  padding: 0.75rem;
-  margin-bottom: 0.5rem;
-  background: #f8fafc;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-li:hover {
-  background: #f1f5f9;
-}
-
-li.completed {
-  opacity: 0.7;
-  background: #f0f9ff;
-}
-
-li.completed span {
-  text-decoration: line-through;
-  color: #64748b;
-}
-
-/* ===== 탭 시스템 ===== */
-.tab-buttons {
-  display: flex;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.tab-button {
-  background: transparent;
-  border: none;
-  padding: 1rem 2rem;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  color: #64748b;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.tab-button:hover {
-  color: #334155;
-  background: #f8fafc;
-  transform: none;
-  box-shadow: none;
-}
-
-.tab-button.active {
-  color: #3b82f6;
-  border-bottom-color: #3b82f6;
-  background: white;
-}
-
-/* ===== 로딩 상태 ===== */
-.loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  color: #64748b;
-}
-
-.loading::before {
-  content: '';
-  width: 20px;
-  height: 20px;
-  border: 2px solid #e2e8f0;
-  border-top: 2px solid #3b82f6;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-right: 0.5rem;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* ===== 에러 메시지 ===== */
-.error-message {
-  color: #ef4444;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  display: block;
-}
-
-.success-message {
-  color: #10b981;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  display: block;
-}
-
-/* ===== 빈 상태 ===== */
-.empty-state {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: #64748b;
-}
-
-.empty-state h3 {
-  color: #94a3b8;
-  margin-bottom: 0.5rem;
-}
-
-/* ===== 그리드 레이아웃 ===== */
-.grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.grid-2 {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-/* ===== 반응형 디자인 ===== */
-@media (max-width: 768px) {
-  main {
-    padding: 1rem;
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
   }
-  
-  nav {
-    padding: 1rem;
+  a:hover {
+    color: #747bff;
   }
-  
-  nav a {
-    margin: 0 0.5rem;
-    padding: 0.5rem;
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  section {
-    padding: 1rem;
-  }
-  
-  .tab-button {
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* ===== 유틸리티 클래스들 ===== */
-.mt-1 { margin-top: 0.25rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 1rem; }
-.mt-4 { margin-top: 1.5rem; }
-
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-3 { margin-bottom: 1rem; }
-.mb-4 { margin-bottom: 1.5rem; }
-
-.p-2 { padding: 0.5rem; }
-.p-3 { padding: 1rem; }
-.p-4 { padding: 1.5rem; }
-
-.text-center { text-align: center; }
-.text-sm { font-size: 0.875rem; }
-.text-lg { font-size: 1.125rem; }
-
-.flex { display: flex; }
-.items-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-.gap-2 { gap: 0.5rem; }
-.gap-3 { gap: 1rem; }
-
-/* ===== 다크모드 대응 (선택사항) ===== */
-@media (prefers-color-scheme: dark) {
-  html, body {
-    background-color: #0f172a;
-    color: #e2e8f0;
-  }
-  
-  .card, section {
-    background: #1e293b;
-    border-color: #334155;
-  }
-  
-  nav {
-    background: #1e293b;
-    border-color: #334155;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="number"],
-  textarea {
-    background: #334155;
-    border-color: #475569;
-    color: #e2e8f0;
-  }
-  
-  li {
-    background: #334155;
-    border-color: #475569;
-  }
-  
-  li:hover {
-    background: #475569;
+  button {
+    background-color: #f9f9f9;
   }
 }

@@ -1,12 +1,14 @@
-import Greeting from "./components/Greeting"
-import Profile from "./components/Profile"
+import UserCard from "./components/day1/UserCard";
 
 function App() {
 
   return (
     <div>
-      <Greeting name="훈" />
-      <Profile nickname="훈" age={29} isDeveloper={true} />
+      <UserCard
+      username="홍훈"
+      email="adeliae.p1841@gmail.com"
+      isAdmin={true}
+      />
     </div>
   )
 }
